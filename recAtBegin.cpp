@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node {
+  public:
+  int data;
+  Node* next;
+  Node (int value) {
+    data = value;
+    next = NULL;
+  }
+};
+
+Node* createLinkedList(int arr[], int index, int size, Node* prev) {
+  if(index == size) {
+    return prev;
+  }
+
+  Node* temp;
+  temp = new Node(arr[index]);
+  temp-> next = prev;
+  return createLinkedList(arr, index+1, size, temp);
+}
+
+int main() {
+  Node *head;
+  head = NULL;
+  int arr[] = {9,7,8,6};
+  int size = sizeof(arr)/ sizeof(arr[0]);
+  head = createLinkedList(arr, 0, size, head);
+
+  head = NULL;
+  // Delete at start
+
+  if(head != NULL) {
+    Node* temp = head;
+    head= head -> next;
+    delete temp;
+  }
+
+
+  Node * temp = head;
+  while(temp != NULL) {
+    cout << temp->data<< endl;
+    temp = temp->next;
+  }
+
+  return 0;
+}
